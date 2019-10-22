@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block head %}
+    <link rel="stylesheet" href="{{ base_url }}/css/vocabulary.css?{{ version }}" />
+    <link rel="stylesheet" href="{{ base_url }}/css/autocomplete.css?{{ version }}" />
+    <link rel="stylesheet" href="{{ base_url }}/css/set.css?{{ version }}" />
+    <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="{{ base_url }}/js/jquery.autocomplete.js?1.1"></script>
+    <script src="{{ base_url }}/js/jquery.formset.js?{{ version }}"></script>
+    <script src="{{ base_url }}/js/ac_formset.js?{{ version }}"></script>
+{% endblock %}
+{% block content %}
+    <style>
+    th label{text-align:right}
+    body, select{font-size:14px}
+    {% if sector.slug != 'upholstery' %}
+        .row_size_w, .row_size_h, .row_size_d{display:none}
+    {% endif %}
+    </style>
+    <h1>{% if product %}Edit{% else %}Add{% endif %} product: {{ sector.name.lower }}</h1>
+
+    <p>Supplier: <a href="{{ org.get_absolute_url }}">{{ org.name }}</a>
+    <form method="post" action="{{ base_pk }}{{ request.path }}" id="tagging">
+        {% include "messages.html" %}
+        {{ form.errors }}
+        <table>
+            {% for field in form %}
+                <tr class="row_{{ field.html_name }}">
+                    <th>{{ field.label_tag }}</th>
+                    <td>
+                        {{ field }}
+                        {{ field.errors }}
+                        {% if field.help_text %}
+                            <p class="help">{{ field.help_text|safe }}</p>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+            <tr>
+                <th><label>Attributes:<label></th>
+                <td>{% include "product/concept-set-formset.html" %}</td>
+            </tr>
+        </table>
+
+        {% csrf_token %}
+        {{ formset.management_form }}
+
+        <p><button class="btn btn-lg">Save product</button></p>
+        {% if product.pk %}
+            <a href="{% url 'product' product.pk %}">view product</a>
+        {% endif %}
+    </form>
+{% endblock %}

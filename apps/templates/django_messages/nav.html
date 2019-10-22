@@ -1,0 +1,19 @@
+{% url 'profile' as profile_url %}
+{% url 'messages_inbox' as inbox_url %}
+{% url 'messages_outbox' as outbox_url %}
+{% url 'messages_trash' as trash_url %}
+
+{% if request.path != profile_url %}
+	<h1><a href="{{ profile_url }}">👤 Your profile</a></h1>
+{% endif %}
+
+<nav class="messages_subnav">
+	<ul class="tabs nav-tabs">
+		<li{% if request.path == inbox_url %} class="curr"{% endif %}>
+			<a href="{{ inbox_url }}">Inbox</a></li>
+		<li{% if request.path == outbox_url %} class="curr"{% endif %}>
+			<a href="{{ outbox_url }}">Sent messages</a></li>
+		<li{% if request.path == trash_url %} class="curr"{% endif %}>
+			<a href="{{ trash_url }}">Bin</a></li>
+	</ul>
+</nav>

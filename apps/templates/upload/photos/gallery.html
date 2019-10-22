@@ -1,0 +1,7 @@
+{% if photos %}
+	<div class="image_gallery" itemscope itemtype="http://schema.org/ImageGallery">
+	{% for img in photos %}
+		{% include 'upload/photos/figure.html' %}
+	{% endfor %}
+	</div>
+{% endif %}

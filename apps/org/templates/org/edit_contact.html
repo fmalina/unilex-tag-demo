@@ -1,0 +1,22 @@
+{% extends 'org/edit.html' %}
+{% load tags %}
+{% block tab_content %}
+    <p>Let's start with basic contact information for your operation.
+    <p>It looks like another boring form to fill in, doesn't it?
+    <p>Your potential customers need to contact you somehow right?
+    <p>You'd like to know where your key supplier is based too, right?
+    <ul>
+    {{ edit_form.as_ul }}
+    </ul>
+
+	{% csrf_token %}
+	<p>
+	    <button type="submit" class="btn btn-lg btn-success">
+	        Save
+	    </button>
+	</p>
+{% endblock %}
+
+{% block submit_button %}{% endblock %}
+
+

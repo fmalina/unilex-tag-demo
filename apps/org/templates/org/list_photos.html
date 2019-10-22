@@ -1,0 +1,7 @@
+{% with s.photos.all as photos %}
+{% with '80x80' as size %}
+	{% if photos %}
+		{% include "upload/photos/gallery.html" %}
+	{% endif %}
+{% endwith %}
+{% endwith %}

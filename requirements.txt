@@ -1,0 +1,14 @@
+django          # web framework
+gunicorn        # backend server
+mysqlclient     # api layer for chosen DB
+docutils        # generate documentation
+django-allauth  # authentication
+
+git+git://github.com/fmalina/upload.git#egg=upload
+git+git://github.com/fmalina/django-messages.git#egg=django-messages
+git+git://github.com/fmalina/django-emails.git#egg=emails
+git+git://github.com/fmalina/django-pay.git#egg=pay
+
+lxml
+sentry_sdk
+requests

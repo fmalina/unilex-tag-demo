@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load tags pagination_tags %}
+{% block title %}{{ q }} search{% endblock %}
+
+{% block body_id %} id="search"{% endblock %}
+{% block content %}
+    {% if ls %}
+        <div class="listings wrapper">
+            <div class="main">
+                <h1>Matching: {{ q }}</h1>
+                {% if ls %}
+                        {% autopaginate ls 50 %}
+                        <ul class="ls">
+                        {% for o in ls %}
+                            <li><a href="{{ o.get_absolute_url }}">{{ o.name }}</a>
+                        {% endfor %}
+                        </ul>
+                        <div class="clear"></div>
+                        {% paginate %}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p>No results</p>
+    {% endif %}
+{% endblock %}

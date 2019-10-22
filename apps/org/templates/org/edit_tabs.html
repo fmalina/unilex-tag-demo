@@ -1,0 +1,9 @@
+<ul class="tabs nav-tabs">
+    <li class="link"><a href="{% url 'profile' %}">Your profile</a>
+    {% if location %}
+    <li{% if edit_form %} class="curr"{% endif %}>
+        <a href="{% url 'org_contact' pk=location.pk %}">Contact details</a>
+    <li{% if col %} class="curr"{% endif %}>
+        <a href="{% url 'upload_col_edit' pk=location.pk %}">Photos</a>
+    {% endif %}
+</ul>

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load tags pagination_tags %}
+{% block title %}{% if request.page != 1 %}Page {{ request.page }}: {% endif %}{{ title|default:org.title }} in {{ area }}{% block more_title %}{% endblock %}{% endblock %}
+
+{% block style %}
+.pagination{list-style:none;display:inline-block;color:#999;margin:25px 0;padding:0;
+    border:1px solid #ddd;border-radius:5px;box-shadow:0 1px 2px #eee}
+.pagination li{display:inline-block}
+.pagination a{text-decoration:none}
+.pagination a,
+.pagination span{display:inline-block;border-right:1px solid #ddd;padding:6px 12px}
+.pagination .last{border-right:0}
+.pagination .next{border-right:0;border-left:1px solid #ddd}
+.pagination a:hover,.pagination a:active,
+.pagination .active{background:#eee;text-decoration:none}
+{% endblock %}
+
+{% block body_id %} id="ls"{% endblock %}
+
+{% block links %}
+{% block breadcrumbs %}
+    <li><a href="{{ county.url }}">{{ county.name }}</a></li>
+    {% if town and county != town %}
+    <li><a href="{{ county.url }}{{ town.slug }}">{{ area }}</a></li>
+    {% endif %}
+{% endblock %}
+{% endblock %}
+
+{% block content %}
+    <h1>{{ title|default:org.title }} in {{ area }}</h1>
+    <div class="{% if town %}listings wrapper{% else %}full-width{% endif %}">
+        {% if ls %}
+            <div class="main">
+                {% autopaginate ls 50 %}
+                <ul class="ls">
+                {% for o in ls %}
+                <li>{{ o.name }}
+                {% endfor %}
+                </ul>
+                <div class="clear"></div>
+                {% paginate %}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}

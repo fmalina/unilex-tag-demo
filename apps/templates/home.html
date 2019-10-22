@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load tags %}
+{% block content %}
+<div class="home wrapper">
+    <div class="main">
+        <h1>New standard in sourcing</h1>
+        <p>How do you get what you need when you need it in the fashion&nbsp;industry?
+        <p>Ok, stop laughing. Try us! Fashion Sourcing organises suppliers and their product delivery capabilities.
+        <p>We help to find suppliers, manufacturers and skilled artisans in their sector to deliver your collection.
+        <p><a class="btn" href="/account/signup/">Let's see it!</a>
+        <p><small>We are currently open for suppliers to populate their offerings,
+        but hey, if you are a brand or a fashion expert, you are welcome to have a sneaky peak too.</small>
+    </div>
+    <div class="side">
+        <br><br>
+        {% include 'account/signup_block.html' %}
+    </div>
+</div>
+{% endblock %}

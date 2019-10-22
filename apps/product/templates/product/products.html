@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+    .products{list-style:none;padding:0}
+    .products li{border-bottom:1px solid #eee}
+    h2, h2 > p{padding-bottom:0;margin-bottom:0}
+    h2 a{text-decoration:none}
+</style>
+
+<h1>{{ title }}</h1>
+
+<ul class="products">
+{% for product in products %}
+<li>
+    <h2>
+        {{ product.name }}
+        <small>
+            {{ product.ref }}
+            <a href="{{ product.get_absolute_url }}">edit</a>
+        </small>
+    </h2>
+    <p>{{ product.desc }}</p>
+
+    {% if product.tag_set.all %}
+        <p>
+            <b>Marked</b>:
+            {% for tag in product.tag_set.all %}
+                <a href="{{ tag.concept.get_absolute_url }}">
+                    {{ tag.concept.name }}
+                </a>{% if not forloop.last %}, {% endif %}
+            {% endfor %}
+        </p>
+    {% endif %}
+</li>{% empty %}No products listed yet.
+{% endfor %}
+</ul>
+
+{% endblock %}

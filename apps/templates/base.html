@@ -1,0 +1,49 @@
+<!doctype html>{% load tags static %}
+<html lang="en-gb">
+<head>
+<meta charset="utf-8">
+<title>{% block title %}{{ title }}{% endblock %}{% block head_title %}{% endblock %}</title>
+<meta name="description" content="{% block desc %}{% endblock %}">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+<link rel="canonical" href="{{ site_url }}{{ request.path_info }}">
+{% block js %}{% endblock %}
+<style>{% block style %}{% endblock %}</style>
+<link rel="stylesheet" href="/style.css">
+{% block head %}{% endblock %}
+</head>
+<body{% block body_id %}{% endblock %}>
+<div class="header">
+	<a href="/" class="logo">Fashion sourcing <img src="/arrow.svg" valign="middle" alt="" width="25"></a>
+	{% block search %}
+        <form class="search has-feedback" method="get" action="/search" target="_top">
+        <input placeholder="Find suppliers"
+            type="text" id="q" name="q" autocomplete="off" value="{{q}}">
+        </form>
+    {% endblock %}
+    {% if user.is_authenticated %}
+        <a href="/profile" class="profile-link">
+            {% if user.get_full_name %}{{ user.get_full_name }}{% else %}{{ user.username }}{% endif %}</a>
+    {% endif %}
+</div>
+{% block body %}
+{% block map %}{% endblock %}
+<div class="content">
+    {% block profile_link %}{% endblock %}
+    {% block h1 %}{% endblock %}
+    {% block content_wrap %}
+    {% block sidebar %}{% endblock %}
+    {% block content %}{% endblock %}
+    {% endblock %}
+</div>
+
+{% block footer %}
+<footer>
+<div class="footer">
+	<p>&copy; {% now 'Y' %} Fashion Sourcing. All rights reserved.
+</div>
+</footer>
+{% include 'debug.html' %}
+{% endblock %}
+{% endblock %}
+</body>
+</html>

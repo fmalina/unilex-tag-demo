@@ -1,0 +1,22 @@
+<h4>{% if not instance %}
+		Add {{ name }}
+	{% else %}
+		Edit: {{ instance.name }}
+	{% endif %}</h4>
+
+{% if instance %}
+	{% if photos %}
+		{% with '180x180' as size %}
+			{% include "upload/photos/gallery.html" %}
+		{% endwith %}
+		<div class="clear"></div>
+	{% else %}
+		👤
+	{% endif %}
+	<p><a class="btn btn-default"
+			href="{% url 'upload_gfk_edit' 'org' model_name instance.pk %}">
+			Upload photo
+		</a></p>
+{% else %}
+	<p>Save to add photos.
+{% endif %}

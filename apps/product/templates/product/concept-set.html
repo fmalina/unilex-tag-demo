@@ -1,0 +1,8 @@
+{% if concept != 'addfirst' %}{% spaceless %}<div>
+    <p>
+        <!--a title="more in a new tab" class="go" target="_blank" href="{{ base_url }}{{ concept.get_absolute_url }}"><i class="icon-external"></i></a-->
+        <span>{{ concept.backwards_path }}</span><br>
+        <small>{{ concept.slug }}{% if concept.count %}, {{ concept.count }} use{{ concept.count|pluralize }}{% endif %}</small>
+    </p>
+    </div>{% endspaceless %}{% if autocomplete %}|{{ concept.slug }}
+{% endif %}{%endif%}

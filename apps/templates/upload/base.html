@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block h1 %}
+{% with col as location %}
+<h1>Upload photos to represent: {{ location.name }}
+								{{ instance.name }}</h1>
+{% include 'org/edit_tabs.html' %}
+<br>
+{% endwith %}
+{% endblock %}

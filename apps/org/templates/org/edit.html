@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load tags %}
+
+{% block title %}
+{% if location %}Editing: {{ location.name }}
+{% else %}New location{% endif %}
+{% endblock %}
+
+{% block js %}
+<style>
+  .edit ul{list-style:none}
+  .edit li{padding:5px 0}
+  .edit label{min-width:8em;display:inline-block}
+  input[type=number]{width:4em;margin:0 .5em;padding:2px 3px}
+  .blank-user{font-size:140px;color:#ddd;border:1px solid #ddd;margin-bottom:10px;padding:10px}
+</style>
+<script src="//code.jquery.com/jquery.min.js"></script>
+{% with 1 as photos %}
+	{% include "upload/photos/head.html" %}
+{% endwith %}
+{% endblock %}
+
+{% block content %}
+<h1>
+{% if location %}
+    Editing: <a href="{{ location.get_absolute_url }}">{{ location.name }}</a>
+{% else %}
+    New location
+{% endif %}
+</h1>
+
+{% include 'org/edit_tabs.html' %}
+
+<form class="edit" method="POST" action="#">
+    <div class="tab-content">
+        <div class="tab-pane active">
+            {% block tab_content %}
+            {% endblock %}
+        </div>
+    </div>
+	{% block submit_button %}
+    	{% include 'org/submit_button.html' %}
+	{% endblock %}
+</form>
+
+{% endblock %}

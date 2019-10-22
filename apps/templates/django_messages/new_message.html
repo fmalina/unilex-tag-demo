@@ -1,0 +1,17 @@
+{% load i18n %}
+
+Hello {{ message.recipient }},
+
+you received a private message from {{ message.sender }}.
+
+{% if message.recipient.subscription.is_active %}
+	with the following contents:
+	{{ message.body|safe }}
+{% else %}
+	{{ site_url }}{% url 'messages_reply' message.pk %}
+{% endif %}
+
+--
+{% blocktrans %}Sent from {{ site_url }}{% endblocktrans %}
+{% trans "Inbox" %}: {{ site_url }}{% url 'messages_inbox' %}
+{% trans "Reply" %}: {{ site_url }}{% url 'messages_reply' message.pk %}

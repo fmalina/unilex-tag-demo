@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}{{ brand.title }} etc: {% endblock %}
+
+{% block style %}
+#auth .header{padding:0 auto}
+#auth,
+#auth .header,
+#auth h1,
+#auth h1+p,
+#auth form{text-align:center}
+#auth form p,
+#auth form ul,
+#auth .content{text-align:left}
+#auth .content{display:inline-block;margin:0 auto;max-width:450px}
+#auth label[for=id_remember]{display:inline-block;padding-right:1em}
+#auth #id_remember{width:auto}
+#auth form p.password_reset{position:relative;top:-2.5em;height:1px;text-align:right}
+{% endblock %}
+
+{% block body_id %} id="auth"{% endblock %}
+{% block search %}{% endblock %}
+{% block profile_link %}
+{% if user.is_authenticated %}
+<p class="myprofile"><a href="{% url 'profile' %}">👤 Your profile</a>
+{% endif %}
+{% include 'pay/messages.html' %}
+{% endblock %}
+{% block footer %}{% endblock %}

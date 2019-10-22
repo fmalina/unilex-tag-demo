@@ -1,0 +1,11 @@
+<div class="signup-block">
+
+    {% if not user.is_authenticated %}
+        <h2>Sign up now</h2>
+        {% include "account/social_account.html" %}
+        <p><a href="{% url 'account_signup' %}">Create an account</a> or
+        <a href="{% url 'account_login' %}">login</a> if you have one already.</p>
+    {% else %}
+        <p>Welcome {{ user.username }}! You are logged in to Fashion Sourcing.
+    {% endif %}
+</div>

@@ -1,0 +1,14 @@
+{% load eat_tags %}<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% if page == 0 %}
+<url><loc>{{ site_url }}</loc><priority>1</priority></url>
+{% for g in geo %}<url><loc>{{ site_url }}{{ g }}</loc></url>
+{% endfor %}{% endif %}
+{% if org == 'eats' %}
+{% for l in ls  %}<url><loc>{{ site_url }}{{ l|eatery_url }}</loc></url>
+{% endfor %}
+{% else %}
+{% for l in ls  %}<url><loc>{{ site_url }}{{ l.get_absolute_url }}</loc></url>
+{% endfor %}
+{% endif %}
+</urlset>

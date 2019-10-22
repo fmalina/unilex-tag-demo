@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+{% load tags %}
+{% block title %}Your profile{% endblock %}
+{% block adsense_js %}{% endblock %}
+
+{% block content %}
+<div class="detail wrapper">
+    <div class="main">
+        <h1>👤 Your profile
+            {% if request.user.is_staff %}
+            {% include 'admin-menu.html' %}
+            {% endif %}
+        </h1>
+		{% include 'pay/messages.html' %}
+		{% include 'django_messages/nav.html' %}
+		<br>
+
+        <h2>Your organisation</h2>
+        {% if ls %}
+            <ul class="nav nav-pills nav-stacked">
+                {% for org_user in ls %}
+                <li><a href="{% url 'org_contact' pk=org_user.org.pk %}">
+                    📍 {{ org_user.org.name }}</a><br>
+                    {{ org_user.org.town }}, {{ org_user.org.country }}
+                {% endfor %}
+            </ul>
+            <h3>Add a product</h3>
+
+            <ul class="nav nav-pills">
+            {% for sector in sectors %}
+                <li><a class="btn" href="{% url 'product_add' sector.slug %}">{{ sector.name }}</a></li>
+            {% endfor %}
+            </ul>
+            <p><a href="{% url 'products' %}">Your products</a></p>
+        {% else %}
+            <p>Your organisation is not yet listed.<br>
+                Please add it so you can add your products.</p>
+            <br>
+            <h2>Add your organisation</h2>
+            <p><a href="{% url 'org_new' %}" class="btn btn-default">
+                    Add your organisation</a>
+
+        {% endif %}
+
+
+        <p style="margin-top:5em"><b>Help and Support</b><br> You are using our brand new web service.
+            If you are experiencing any difficulty, please contact us via email
+            at <u>marketing@{{ domain }}</u>
+            for immediate support.
+    </div>
+    
+    <div class="side">
+        <h2>Manage account</h2>
+        <ul class="nav nav-pills nav-stacked">
+        <li><a href="{% url 'account_email' %}">✉️ Manage email addresses</a></li>
+        <li><a href="{% url 'socialaccount_connections' %}">🔗 Google account link</a></li>
+        <li><a href="{% url 'account_change_password' %}">Change your password</a></li>
+	    <li><a href="{% url 'receipts' %}">Your receipts</a></li>
+        <li><a href="{% url 'account_logout' %}">Logout</a></li>
+        </ul>
+
+        <h2>Update profile</h2>
+        <form method="post" action="{{ request.path }}">
+        {{form.as_p}}
+        {% csrf_token %}
+        <p><button type="submit" class="btn btn-success">Update</button></p>
+        </form>
+        <div class="clear"></div>
+        <!--a href="#add" class="disabled">Add location (currently unavailable)</a-->
+    </div>
+</div>
+{% endblock %}

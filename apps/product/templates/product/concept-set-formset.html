@@ -1,0 +1,26 @@
+<script>
+$(function(){
+    acFormset('{% url 'autocomplete' %}', '{{ formset.prefix }}');
+});
+</script>
+
+<ul class="set" id="{{ formset.prefix }}">
+    {% for form, set in forms_and_set %}
+    <li id="{{ form.prefix }}-row">
+    {% with set as concept %}
+        {% include "product/concept-set.html" %}
+    {% endwith %}
+    {% if set == 'addfirst' %}
+        <div class="show">
+        <div></div>
+        {{ form.predicate }}
+        </div>
+    {% else %}
+        <div></div>
+        {{ form.predicate }}
+    {% endif %}
+    {% for fld in form.hidden_fields %}{{ fld }}{% endfor %}
+    {% if form.instance.pk %}{{ form.DELETE }}{% endif %}
+    </li>
+    {% endfor %}
+</ul>

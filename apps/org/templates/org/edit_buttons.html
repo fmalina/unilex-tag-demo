@@ -1,0 +1,7 @@
+{% if form %}
+<p>
+<a class="btn btn-default btn-sm" href="{{ s.get_update_url }}#{{ name }}_form">✏️ EDIT</a>
+<a class="btn btn-default btn-sm" href="{{ s.get_delete_url }}"
+	onclick="return confirm('Are you sure to remove {{ s.name }}?')">❌ REMOVE</a>
+<hr>
+{% endif %}

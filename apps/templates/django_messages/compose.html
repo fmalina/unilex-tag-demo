@@ -1,0 +1,26 @@
+{% extends "django_messages/base.html" %}
+
+{% load i18n %}
+{% block sidebar %}
+<style>
+#id_recipient,
+label[for='id_recipient']{display:none}
+</style>
+{% endblock %}
+
+{% block content %}
+<h1>{% trans "Compose message"%}</h1>
+<form action="" method="post">
+<p>To: {{ form.recipient.value }}
+{% csrf_token %}
+<ul>
+{{ form.as_ul }}
+</ul>
+
+<p>Tip: Sign your message with your name and <b>phone number</b><br>
+	so members can get back to you promply.</p>
+
+<button type="submit" class="btn btn-lg btn-success">💯 Send message</button>
+<p>
+</form>
+{% endblock %}

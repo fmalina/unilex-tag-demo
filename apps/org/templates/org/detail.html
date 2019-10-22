@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% block title %}
+{{ o.name.title }},
+{{ o.address1 }}{% if o.address2 %},
+{{ o.address2 }}{% endif %}{% if o.town %},
+{{ o.address3.title }}{% endif %} - {{ o.name }} {{ o.postcode }}, {{ o.town }}
+{% endblock %}
+{% block desc %}{{ o.name.title }}, {{ o.address1 }}
+    {% if o.address2 %}, {{ o.address2 }}{% endif %},
+    {{ o.postcode }} - {{ o.name }}, {{ o.town }},
+    {% if o.phone %}Phone: {{ o.phone }}{% endif %};
+{% endblock %}
+{% block js %}{% endblock %}
+{% block content %}
+<h1>{{ o.name }}</h1>
+<div class="detail wrapper">
+    <div class="main">
+        <div class="vcard" itemscope itemtype="http://schema.org/LocalBusiness"
+            id="{{ o.typ }}.{{ o.postcode }}.{{ o.pk }}">
+        <div id="contact">
+            <div itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <div itemprop="name">{{ o.name }}</div>
+                {% if o.address1 %}<div itemprop="streetAddress">{{ o.address1 }}</div>{% endif %}
+                <div itemprop="addressLocality">
+                {% if o.address2 %}{{ o.address2 }}<br>{% endif %}
+                {% if o.address3 %}{{ o.address3 }}<br>{% endif %}
+                </div>
+                <b itemprop="postalCode">{{ o.postcode }}</b>
+            </div>
+            {% if o.email %}<p><br>
+                ✉️ email: {{ o.email }}{% endif %}
+            {% with o as s %}{% include 'website-button.html' %}{% endwith %}
+            {% if o.phone %}
+                <p>📞 phone: <a href="tel:{{ o.phone }}"
+                                itemprop="telephone" class="tel">{{ o.phone }}</a></p>
+            {% endif %}
+
+            {% if org_user %}
+            <p><a class="btn btn-lg btn-success"
+                href="{% url 'compose_message' org_user.user.username %}">
+                Contact supplier</a>
+			{% endif %}
+        </div><!--/contact-->
+        </div><!--/vcard-->
+        {% if photos %}
+            <h2>Photos</h2>
+			<div class="photos">
+			{% with '320x320' as size %}
+				{% include "upload/photos/gallery.html" %}
+			{% endwith %}
+			</div>
+            <div class="clear"></div>
+        {% endif %}
+    </div>
+</div><!--/row-->
+{% endblock %}

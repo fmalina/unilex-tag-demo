@@ -1,0 +1,55 @@
+Supplier Type,
+,Material
+,Component
+,Manufacturer
+,Reseller - Stockist
+,Expert
+Sector,
+,Accessory
+,Bags - Leather Goods
+,Clothing
+,Shoes
+,Home Furnishing
+,Upholstery
+Segment,
+,Toddler (0 - 12 Months)
+,Baby Girl (1-2 Years)
+,Baby boy (1-2 Years)
+,Girl (3-8 Years)
+,Boy (3-8 Years)
+,Junior Girl (9-16 Years)
+,Junior boy (9-16 Years)
+,Woman
+,Man
+,Unisex
+Client Ratio on Overall Revenue,
+,0 - 10 %
+,10  - 20 %
+,20 - 30 %
+,30 - 40 %
+,40 - 50 %
+,50  % +
+Units,
+,Sqft
+,Sqm / m2
+,Pcs
+Market Destination,
+,Africa
+,Europe
+,Far East
+,Middle East
+,North America
+,South America
+Production Type,
+,FPP - Full Package Program
+,HPP - Half Package Program
+,CMT
+,Licence
+,Domestic Sampling + Overseas Production
+,Fast Fashion Program
+,Prototyping Unit
+Quality Range,
+,Luxury - Haute Couture
+,High - End
+,Mid - Range
+,Entry Level
