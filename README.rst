@@ -7,7 +7,7 @@ https://unilexicon.com/vocabularies/authority/FS/
 
 
 **Example models: product, taxonomy, tag**
-see ``product/models.py``
+see ``apps/product/models.py``
 
 **Example vocabulary syncronisation script**
-see ``management/commands/load_taxonomies.py``
+see ``apps/product/management/commands/load_taxonomies.py``
