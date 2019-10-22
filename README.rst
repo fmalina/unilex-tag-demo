@@ -1,4 +1,13 @@
-Taxonomy driven product information repository using taxonomies from
-====================================================================
+Taxonomy driven product information repository using Unilexicon
+===============================================================
+
+Sample implementation of a content repository managed using
+vocabularies authored and managed with
 https://unilexicon.com/vocabularies/authority/FS/
-(add json from machine readable format)
+
+
+**Example models: product, taxonomy, tag**
+see ``product/models.py``
+
+**Example vocabulary syncronisation script**
+see ``management/commands/load_taxonomies.py``
